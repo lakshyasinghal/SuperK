@@ -34,8 +34,8 @@ UI
 2. The pages have been integrated in the main web service.
 
 2 URLS which need to be used in browser
-localhost:9000/city-admin-dashboard
-localhost:9000/store-admin-dashboard
+1. localhost:9000/city-admin-dashboard
+2. localhost:9000/store-admin-dashboard
 
 
 
