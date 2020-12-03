@@ -2,8 +2,17 @@
 
 
 
-MySQL - Any version will do but to preferably 5.7.31
+MySQL - Any version will do but preferably 5.7.31
 
+Running MySQL Scripts
+
+1. First create a mysql user with username root and password root
+2. Now go into the mentioned path in SuperK repo
+   SuperK -> AppServer -> sql -> v1 -> script
+3. You will find a run_sql.sh file here
+4. Use command 'chmod +x run_sql.sh'. You can also use 'sudo chmod +x run_sql.sh' in case of permissions error.
+5. Now run the file using './run_sql.sh'
+6. Your db should be setup now.
 
 
 Running Service Locally
@@ -27,3 +36,8 @@ UI
 2 URLS which need to be used in browser
 localhost:9000/city-admin-dashboard
 localhost:9000/store-admin-dashboard
+
+
+
+
+** Please use a Linux system as some of the commands mentioned above may not work in Windows
