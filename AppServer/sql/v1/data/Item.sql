@@ -1,0 +1,10 @@
+INSERT INTO Items values('A12345','Patanjali Toothpaste',1,67.0,60.0);
+INSERT INTO Items values('A23456','Dabur Chavanprash',2,230.0,210.0);
+INSERT INTO Items values('E24512','Dabur Honey',3,300.0,250.0);
+INSERT INTO Items values('W43215','Tata Tea',4,125.0,120.0);
+INSERT INTO Items values('D23165','Haldirams Bhujia',5,90.0,84.0);
+INSERT INTO Items values('A75463','MDH Garam Masala',6,56.0,51.0);
+INSERT INTO Items values('G23865','Britania Good Day',7,30.0,28.0);
+INSERT INTO Items values('B23456','Maggi Noodles',8,59.0,55.0);
+INSERT INTO Items values('W23456','Maggi Tomato Ketchup',9,123.0,105.0);
+INSERT INTO Items values('P23456','Knorr Sweet Corn Soup',10,57.0,45.0);

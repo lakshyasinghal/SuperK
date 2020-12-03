@@ -1,0 +1,115 @@
+def jacksonVersion = '2.6.3'
+def log4j2Version = '2.3'
+def jerseyVersion = '2.19'
+def jettyVersion = '9.3.2.v20150730'
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+//mainClassName = 'com.superK.init.App'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use 'jcenter' for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = []
+            srcDir 'src/main/java/connectionPool'
+            srcDir 'src/main/java/dao'
+            srcDir 'src/main/java/database'
+            srcDir 'src/main/java/entities'
+            srcDir 'src/main/java/exception'
+            srcDir 'src/main/java/factory'
+            srcDir 'src/main/java/jetty'
+            srcDir 'src/main/java/init'
+            srcDir 'src/main/java/requestProcessor'
+            srcDir 'src/main/java/response'
+            srcDir 'src/main/java/rest'
+            srcDir 'src/main/java/serialization'
+            srcDir 'src/main/java/services'
+            srcDir 'src/main/java/util'
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    // The production code uses the SLF4J logging API at compile time
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    //log4j
+    // compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4j2Version
+    // compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4j2Version
+    // compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: log4j2Version
+    // compile group: 'org.apache.logging.log4j', name: 'log4j-jul', version: log4j2Version
+    // compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: log4j2Version
+    
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'org.slf4j:slf4j-log4j12:1.7.5'
+    
+    //jackson
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-base', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: jacksonVersion
+    //
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.2'
+    //
+    compile group: 'org.glassfish.jersey.bundles.repackaged', name: 'jersey-guava', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-common', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: jerseyVersion
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: '2.17'
+
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-http', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-io', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-security', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-util', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: jettyVersion
+
+
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+
+    compile 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
+    compile 'mysql:mysql-connector-java:5.1.37'
+    //compile group: 'javax.mail', name: 'javax.mail-api', version: '1.5.5'
+    compile group: 'com.sun.mail', name: 'javax.mail', version: '1.5.6'
+
+    compile 'org.mybatis:mybatis-migrations:3.3.2'
+    
+    compile 'redis.clients:jedis:1.5.0'
+    // Declare the dependency for your favourite test framework you want to use in your tests.
+    // TestNG is also supported by the Gradle Test task. Just change the
+    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
+    // 'test.useTestNG()' to your build script.
+    testCompile 'junit:junit:4.12'
+}
+
+
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.superK.init.App"
+        attributes "Class-Path": configurations.compile.collect { it.absolutePath }.join(" ")
+    }
+}

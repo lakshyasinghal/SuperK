@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style type="text/css">
+		h1 {
+			text-align: center;
+		}
+
+		#container {
+			text-align: center;
+			font-size: 30px;
+			color: grey;
+			margin-top: 30px;
+		}
+
+		#container input {
+			font-size: 30px;
+			border-radius: 4px;
+		}
+	</style>
+</head>
+<body>
+	<h1>LOGIN</h1>
+	<div id="container">
+		<div id="error"></div>
+		<div style="margin-top: 100px">Username <input type="text" name="username" id="username"></div>
+		<div style="margin-top: 10px">Password <input type="password" name="password" id="password"></div>
+		<div><button id="submitBtn">Submit</button></div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		  $("#submitBtn").click(function(){
+		  	var data = {"username":$("#username").val(), "password":$("#password").val()};
+		    $.ajax({
+		    	type : "POST",
+			    url : "/api/v1/login",
+			    datatype : "application/json",
+			    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			    data: data,
+		    	success: function(result,status){
+			      	var res = JSON.parse(result);
+			      	if(res.adminType==1){
+			      		$(location).attr('href', '/store-admin');
+			      	}
+			      	else{
+			      		$(location).attr('href', '/city-admin');
+			      	}
+		    },
+			error: function(xhr,status,err){
+				$("#error").text(err);
+			}});
+		  });
+		});
+	</script>
+</body>
+</html>

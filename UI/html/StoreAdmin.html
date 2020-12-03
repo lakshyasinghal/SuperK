@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+    h1 {
+      text-align: center;
+    }
+    .dropdown {
+      display: inline-block;
+        margin-left: 100px;
+    }
+    #city {
+      display: inline-block;
+        margin-right: 100px;
+    }
+    .btn-container {
+      text-align: center;
+        margin-top: 40px;
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+  <h1>STORE ADMIN DASHBOARD</h1>
+  
+  <div>
+    <div class="dropdown">
+      <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Select Store
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li class="storeOption">Store1</li>
+        <li class="storeOption">Store2</li>
+        <li class="storeOption">Store3</li>
+        <li class="storeOption">Store4</li>
+        <li class="storeOption">Store5</li>
+        <li class="storeOption">Store6</li>
+        <li class="storeOption">Store7</li>
+        <li class="storeOption">Store8</li>
+        <li class="storeOption">Store9</li>
+        <li class="storeOption">Store10</li>
+        <li class="storeOption">Store11</li>
+        <li class="storeOption">Store12</li>
+      </ul>
+    </div>
+    <input type="text" name="city" id="city" class="form-control" style="width:200px">
+    <div class="btn-container"><button id="infoBtn" class="btn btn-danger">Show Inventory</button></div>
+  </div>
+
+  <div style="margin-top:50px">
+    <table id="info-table" class="table" style="max-width:60%">
+      <thead>
+        <tr>
+          <th>Store Name</th>
+          <th>Store Address</th>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    $(document).ready(function(){
+        $(".storeOption").click(function(e){
+          $("#city").val(e.target.innerHTML);
+        });
+    
+        $("#infoBtn").click(function(){
+          $("#info-table > tbody").html("");
+          var storeId = $("#city").val().replace("Store","");
+          $.get("/api/v1/items-info/store/"+storeId, function(data, status){
+            var list = data.list;
+            for(var i=0;i<list.length;i++){
+              $("#info-table > tbody").append("<tr>" + 
+                "<td>" + list[i].StoreName + "</td>" + 
+                "<td>" + list[i].Address + "</td>" + 
+                "<td>" + list[i].ProductName + "</td>" + 
+                "<td>" + list[i].Quantity + "</td>" + 
+                "<td>" + list[i].City + "</td>" + 
+                "</tr>");
+            }
+          });
+        });
+    });
+  </script>
+</body>
+</html>

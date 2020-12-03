@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `Items`;
+
+CREATE TABLE `Items` (
+	skuId CHAR(6) PRIMARY KEY,
+	productName VARCHAR(50) NOT NULL,
+	typeId INT NOT NULL,
+	mrp FLOAT NOT NULL,
+	salesPrice FLOAT NOT NULL
+);

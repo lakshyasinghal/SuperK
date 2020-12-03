@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS `StoreInventories`;
+	
+CREATE TABLE `StoreInventories` (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	storeId SMALLINT NOT NULL,
+	itemId CHAR(6) NOT NULL,
+	quantity SMALLINT
+);

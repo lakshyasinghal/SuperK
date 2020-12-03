@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `Warehouses`;
+
+CREATE TABLE `Warehouses` (
+	id SMALLINT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(20),
+	address VARCHAR(50),
+	city VARCHAR(20),
+	state VARCHAR(20)
+);

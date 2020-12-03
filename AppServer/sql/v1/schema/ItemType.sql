@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS `ItemTypes`;
+
+CREATE TABLE `ItemTypes` (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	type VARCHAR(20),
+	brand VARCHAR(20),
+	category VARCHAR(20)
+);
